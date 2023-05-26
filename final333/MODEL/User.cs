@@ -7,10 +7,16 @@ namespace final333.MODEL
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required]
         public int customerid { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
+
+        //customer id as primary key
+        [Required]
+        public string? name { get; set; }
+        [Required]  
+        public string? email { get; set; }
+        [Required]  
+        public string? password { get; set; }
         // Other customer properties
 
         

@@ -6,9 +6,9 @@ namespace final333.MODEL
     {
         public Hoteldbcontext(DbContextOptions<Hoteldbcontext> options) : base(options) { }
 
-        DbSet<Hotel> Hotels{ get; set; }
-        DbSet<Rooms> Rooms { get; set; }
-        DbSet<User> users { get; set; }
+        public DbSet<Hotel> Hotels{ get; set; }
+        public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<User> users { get; set; }
         
     }
 }
