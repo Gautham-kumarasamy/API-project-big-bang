@@ -53,6 +53,7 @@ namespace final333
           options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample")));
             builder.Services.AddDbContext<Hoteldbcontext>(optionsAction: options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample")));
+            builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 
             var app = builder.Build();
 

@@ -8,7 +8,7 @@ namespace final333.MODEL
 
         public DbSet<Hotel> Hotels{ get; set; }
         public DbSet<Rooms> Rooms { get; set; }
-        public DbSet<User> users { get; set; }
+        public DbSet<User> user { get; set; }
         
     }
 }

@@ -1,137 +1,118 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using final333.MODEL;
 
-namespace final333.Controllers
+namespace final333.MODEL
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly Hoteldbcontext _context;
+        private readonly Hoteldbcontext _dbContext;
 
-        public UsersController(Hoteldbcontext context)
+        public UserController(Hoteldbcontext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
-        // GET: api/Users
+        // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> Getusers()
+        public IActionResult GetAlluser()
         {
-          if (_context.users == null)
-          {
-              return NotFound();
-          }
-            return await _context.users.ToListAsync();
+            try
+            {
+                var user = _dbContext.user.ToList();
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        // GET: api/Users/5
+        // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public IActionResult GetUserById(int id)
         {
-          if (_context.users == null)
-          {
-              return NotFound();
-          }
-            var user = await _context.users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.customerid)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
+                var user = _dbContext.user.Find(id);
+                if (user == null)
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public IActionResult CreateUser([FromBody] User user)
         {
-          if (_context.users == null)
-          {
-              return Problem("Entity set 'Hoteldbcontext.users'  is null.");
-          }
-            _context.users.Add(user);
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (UserExists(user.customerid))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                if (user == null)
+                    return BadRequest("User object is null");
 
-            return CreatedAtAction("GetUser", new { id = user.customerid }, user);
+                _dbContext.user.Add(user);
+                _dbContext.SaveChanges();
+                return CreatedAtAction(nameof(GetUserById), new { id = user.customerid }, user);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        // DELETE: api/Users/5
+        // PUT: api/User/5
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] User user)
+        {
+            try
+            {
+                if (user == null || id != user.customerid)
+                    return BadRequest("Invalid user object");
+
+                var existingUser = _dbContext.user.Find(id);
+                if (existingUser == null)
+                    return NotFound();
+
+                existingUser.name = user.name;
+                existingUser.email = user.email;
+                existingUser.password = user.password;
+
+                _dbContext.SaveChanges();
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
-            if (_context.users == null)
+            try
             {
-                return NotFound();
+                var user = _dbContext.user.Find(id);
+                if (user == null)
+                    return NotFound();
+
+                _dbContext.user.Remove(user);
+                _dbContext.SaveChanges();
+                return NoContent();
             }
-            var user = await _context.users.FindAsync(id);
-            if (user == null)
+            catch (Exception)
             {
-                return NotFound();
+                return StatusCode(500, "Internal server error");
             }
-
-            _context.users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return (_context.users?.Any(e => e.customerid == id)).GetValueOrDefault();
         }
     }
 }
