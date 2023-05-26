@@ -16,7 +16,17 @@ namespace final333.MODEL
         public int hotelid { get; set; }
         [Required]
         public string? type { get; set; }
-        public bool availability { get; set; }
+        public string? availability { get; set; }
+        [Required]
+        
+        public int? price { get; set; }
+
+        [Required]
+        public string? amenities { get; set; }
+
+        [Required]
+
+        public string? location { get; set; }
         
 
 

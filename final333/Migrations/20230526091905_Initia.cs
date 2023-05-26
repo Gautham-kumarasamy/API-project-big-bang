@@ -15,10 +15,10 @@ namespace final333.Migrations
                 columns: table => new
                 {
                     hotelid = table.Column<int>(type: "int", nullable: false),
-                    Customername = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Customeraddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Customername = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Customeraddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     city = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    country = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    country = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,8 +45,11 @@ namespace final333.Migrations
                 {
                     roomid = table.Column<int>(type: "int", nullable: false),
                     hotelid = table.Column<int>(type: "int", nullable: false),
-                    type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    availability = table.Column<bool>(type: "bit", nullable: false)
+                    type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    availability = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    price = table.Column<int>(type: "int", nullable: false),
+                    amenities = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    location = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
