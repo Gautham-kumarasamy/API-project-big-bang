@@ -8,13 +8,12 @@ namespace final333.MODEL
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int roomid { get; set; }
+        [ForeignKey("Hotel")]
 
-        public Hotel? hotelid { get; set; }
-        public string? roomnumber { get; set; }
+        public int hotelid { get; set; }
         public string? type { get; set; }
-        public int capacity { get; set; }
         public bool availability { get; set; }
-        // Other room properties
+        
 
 
     }
