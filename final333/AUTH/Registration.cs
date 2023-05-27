@@ -1,15 +1,5 @@
-﻿/*using System.ComponentModel.DataAnnotations;
-
-namespace JWTCodeFirst.Auth
-{
-    public class Registration
-    {
-    }
-}
-*/
-
-using System.ComponentModel.DataAnnotations;
-namespace ProjectAPI.Auth
+﻿using System.ComponentModel.DataAnnotations;
+namespace final333.Auth
 {
     public class Registrationmodule
     {

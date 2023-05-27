@@ -1,10 +1,11 @@
 
-using authentication.AUTH;
 using final333.MODEL;
+using final333.SERVICES;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using final333.Auth;
 using System.Text;
 
 namespace final333
@@ -17,9 +18,7 @@ namespace final333
             ConfigurationManager configuration = builder.Configuration;
 
             // For Identity
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AuthorizationDbContext>()
-                .AddDefaultTokenProviders();
+
 
             // Adding Authentication
             builder.Services.AddAuthentication(options =>
@@ -49,12 +48,14 @@ namespace final333
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
             builder.Services.AddDbContext<AuthorizationDbContext>(optionsAction: options =>
-          options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample")));
+          options.UseSqlServer(builder.Configuration.GetConnectionString(name: "Auth")));
             builder.Services.AddDbContext<Hoteldbcontext>(optionsAction: options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample")));
-            builder.Services.AddScoped<IHotelRepository, HotelRepository>();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

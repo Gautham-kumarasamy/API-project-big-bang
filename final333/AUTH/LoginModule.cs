@@ -1,16 +1,6 @@
-﻿/*using System.ComponentModel.DataAnnotations;
-*/
-/*namespace JWTCodeFirst.Auth
-{
-    public class LoginModule
-    {
-    }
-}*/
+﻿using System.ComponentModel.DataAnnotations;
 
-
-using System.ComponentModel.DataAnnotations;
-
-namespace ProjectAPI.Auth
+namespace final333.Auth
 {
     public class LoginModule
     {

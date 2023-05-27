@@ -1,12 +1,6 @@
-﻿/*namespace JWTCodeFirst.Auth
-{
-    public class Response
-    {
-    }
-}
-*/
+﻿
 
-namespace ProjectAPI.Auth
+namespace final333.Auth
 {
     public class Response
     {

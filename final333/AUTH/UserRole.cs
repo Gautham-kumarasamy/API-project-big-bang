@@ -1,11 +1,5 @@
-﻿/*amespace JWTCodeFirst.Auth
-{
-    public class UserRole
-    {
-    }
-}*/
-
-namespace ProjectAPI.Auth
+﻿
+namespace final333.Auth
 {
     public class UserRoles
     {

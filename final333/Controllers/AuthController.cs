@@ -1,17 +1,13 @@
-﻿
-
-
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using ProjectAPI.Auth;
+using final333.Auth;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ProjectAPI.Controllers
+namespace final333.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

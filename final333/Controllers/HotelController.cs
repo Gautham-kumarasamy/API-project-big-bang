@@ -18,6 +18,12 @@ namespace final333.MODEL
         // GET: api/Hotel
         [HttpGet]
         public async Task<IActionResult> GetAllHotels()
+
+
+
+
+
+
         {
             try
             {

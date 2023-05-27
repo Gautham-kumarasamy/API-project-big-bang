@@ -18,6 +18,6 @@ namespace final333.MODEL
         public string? country { get; set; }
 
 
-         public List<Rooms> Room { get; set; }
+         public List<Rooms> Room { get; set; } = new List<Rooms>();
     }
 }

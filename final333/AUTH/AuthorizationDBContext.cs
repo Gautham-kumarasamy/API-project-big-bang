@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace authentication.AUTH
+
+namespace final333.Auth
 {
     public class AuthorizationDbContext : IdentityDbContext<IdentityUser>
     {
