@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace final333.MODEL
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class HotelController : ControllerBase
     {
@@ -18,12 +18,6 @@ namespace final333.MODEL
         // GET: api/Hotel
         [HttpGet]
         public async Task<IActionResult> GetAllHotels()
-
-
-
-
-
-
         {
             try
             {
@@ -73,7 +67,7 @@ namespace final333.MODEL
         }
 
         // PUT: api/Hotel/5
-        [HttpPut("{id}")]
+      /*  [HttpPut("{id}")]
         public async Task<IActionResult> UpdateHotel(int id, [FromBody] Hotel hotel)
         {
             try
@@ -97,7 +91,7 @@ namespace final333.MODEL
             {
                 return StatusCode(500, "Internal server error");
             }
-        }
+        }*/
 
         // DELETE: api/Hotel/5
         [HttpDelete("{id}")]

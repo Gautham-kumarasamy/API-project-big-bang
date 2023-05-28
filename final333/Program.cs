@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using final333.Auth;
 using System.Text;
+using final333.REPOSITORY;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace final333
 {
@@ -48,13 +50,15 @@ namespace final333
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //builder.Services.AddScoped<IConfiguration, UserManager<IdentityUser>, RoleManager<IdentityUser>>();
             builder.Services.AddScoped<IHotelRepository, HotelRepository>();
-            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<IRoom,Room>();
 
             builder.Services.AddDbContext<AuthorizationDbContext>(optionsAction: options =>
           options.UseSqlServer(builder.Configuration.GetConnectionString(name: "Auth")));
             builder.Services.AddDbContext<Hoteldbcontext>(optionsAction: options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString(name: "sample1")));
             
             var app = builder.Build();
 

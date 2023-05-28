@@ -10,6 +10,7 @@
     <Compile Remove="REPOSITORY\userInterface.cs" />
     <Compile Remove="REPOSITORY\userservices.cs" />
   </ItemGroup>
+	
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />

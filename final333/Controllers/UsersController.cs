@@ -9,7 +9,7 @@ using final333.SERVICES;
 
 namespace final333.MODEL
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {

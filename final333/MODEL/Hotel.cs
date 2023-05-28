@@ -10,9 +10,8 @@ namespace final333.MODEL
         [Required]
         public int hotelid { get; set; }
         [Required]  
-        public string? Customername { get; set; }
-        [Required]  
-        public string? Customeraddress { get; set; }
+        public string? HotelName { get; set; }
+        [Required]
         public string? city { get; set; }
         [Required]  
         public string? country { get; set; }
